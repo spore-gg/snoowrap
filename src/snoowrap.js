@@ -1302,8 +1302,8 @@ const snoowrap = class snoowrap {
       throw new errors.InvalidMethodCallError('Uploaded file cannot be a string on browser');
     }
     // `File` is a specific kind of `Blob`, so one check for `Blob` is enough
-    if (typeof file !== 'string' && !(file instanceof stream.Readable) && !(typeof Blob !== 'undefined' && file instanceof Blob)) {
-      throw new errors.InvalidMethodCallError('Uploaded file must either be a string, a ReadableStream, a Blob or a File');
+    if (typeof file !== 'string' && !(file instanceof stream.Readable) && !(file instanceof Buffer) && !(typeof Blob !== 'undefined' && file instanceof Blob)) {
+      throw new errors.InvalidMethodCallError('Uploaded file must either be a string, a ReadableStream, a Blob, a Buffer or a File');
     }
     const parsedFile = typeof file === 'string' ? createReadStream(file) : file;
     const fileName = typeof file === 'string' ? path.basename(file) : file.name || name;
